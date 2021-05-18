@@ -1,200 +1,261 @@
-﻿using System;
+﻿using Npgsql.TypeHandlers;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
-namespace AddressBookManagementSystemModified
+namespace Address_Book
 {
-    class ContactOperation
+    public class ContactOperation
     {
-        private Dictionary<string, ContactList> ContactLists = new Dictionary<string, ContactList>();
-        private Dictionary<string, List<ContactList>> CityDictionary = new Dictionary<string, List<ContactList>>();
-        private Dictionary<string, List<ContactList>> StatesDictionary = new Dictionary<string, List<ContactList>>();
-        public void GenerateData()
+        private List<Contact> ContactLists = new List<Contact>();
+        private Dictionary<string, List<Contact>> CitiesDict = new Dictionary<string, List<Contact>>();
+        private Dictionary<string, List<Contact>> StatesDict = new Dictionary<string, List<Contact>>();
+        public void generateData()
         {
-            ContactList data1 = new ContactList("Santanu", "Mohapatra", "Kharabela Nagar", "Bhubaneswar", "Odisha", "751001", "6294476694", "mohapatra.santanu123@gmail.com");
-            ContactList data2 = new ContactList("Manoj", "Dash", "Badasankha", "Puri", "Odisha", "743211", "9080706045", "mani_d@xyz.co.in");
-            ContactList data3 = new ContactList("Jethalal", "Gada", "Gokuldham Society, Goregaon", "Mumbai", "Maharastra", "823452", "6840045532", "gadajetha@gmail.com");
-            ContactList data4 = new ContactList("Richa", "Rich", "Electronic City", "Bangalore", "karnataka", "543221", "9987665432", "richa@technoscy.com");
-            ContactLists.Add("Santanu", data1);
-            ContactLists.Add("Manoj", data2);
-            ContactLists.Add("Jethalal", data3);
-            ContactLists.Add("Richa", data4);
-            FilterCityState(ContactLists);
+            
+            ContactLists = JsonHandler.GetDataFromJson();
+            filterCityState(ContactLists);
         }
-        public void AddContact(string firstName, string lastName, string address, string city, string state, string zip, string phoneNumber, string email)
+        public void ShowInBrief()
         {
-            if (ContactLists.ContainsKey(firstName))
+            List<Contact> sortedList = ContactLists.OrderBy(o => o.FirstName).ToList();
+            int i = 1;
+            foreach (Contact contact in sortedList)
             {
-                Console.WriteLine("Contact already exist with same FirstName.");
-            }
-            else
-            {
-                ContactList newContact = new ContactList(firstName, lastName, address, city, state, zip, phoneNumber, email);
-                this.ContactLists.Add(firstName, newContact);
-                FilterCityState(ContactLists);
+                Console.WriteLine($" {i}.{contact.FirstName} {contact.LastName} [{contact.Email}]");
+                i++;
             }
         }
-
-        public void ShowList()
+        public void Write_To_JSON_CSV_TXT()
         {
-            foreach (var contact in ContactLists)
-            {
-                Console.WriteLine("FirstName: " + contact.Value.FirstName);
-                Console.WriteLine("LastName: " + contact.Value.LastName);
-                Console.WriteLine("Address: " + contact.Value.Address);
-                Console.WriteLine("City: " + contact.Value.City);
-                Console.WriteLine("State: " + contact.Value.State);
-                Console.WriteLine("ZipCode: " + contact.Value.Zip);
-                Console.WriteLine("Phone Number: " + contact.Value.PhoneNumber);
-                Console.WriteLine("Email: " + contact.Value.Email);
-            }
+            CSVHandler.WriteToCSVFile(ContactLists);
+            FileIO.WriteToTxt(ContactLists);
+            JsonHandler.WriteToJson(ContactLists);
         }
-        public void EditContact(string fName)
+        public bool checkDuplicate(string firstName)
         {
-            foreach (var contact in ContactLists)
+            bool flag = false;
+            foreach (Contact contact in ContactLists)
             {
-                if (contact.Value.FirstName == fName)
+                if (contact.FirstName.ToLower() == firstName.ToLower())
                 {
-                    Console.WriteLine("Edit? Old FirstName: " + contact.Value.FirstName);
+                    flag = true;
+                    Console.WriteLine("Contact already exist.Please Enter a Different Name");
+                    break;
+                }
+            }
+            if (flag) return true;
+            else return false;
+        }
+        public void addContact(string firstName, string lastName, string address, string city, string state, string zip, string phoneNumber, string email)
+        {
+            Contact newContact = new Contact(firstName, lastName, address, city, state, zip, phoneNumber, email);
+            this.ContactLists.Add(newContact);
+            filterCityState(ContactLists);
+            Write_To_JSON_CSV_TXT();
+
+        }
+        public void ShowOneContact(string fName)
+        {
+            bool flag = false;
+            foreach (var contact in ContactLists)
+            {
+                if (contact.FirstName.ToLower() == fName.ToLower())
+                {
+                    flag = true;
+                    Console.WriteLine("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+                    Console.WriteLine(" FirstName: " + contact.FirstName);
+                    Console.WriteLine("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+                    Console.WriteLine(" LastName: " + contact.LastName);
+                    Console.WriteLine("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+                    Console.WriteLine(" Address: " + contact.Address);
+                    Console.WriteLine("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+                    Console.WriteLine(" City: " + contact.City);
+                    Console.WriteLine("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+                    Console.WriteLine(" State: " + contact.State);
+                    Console.WriteLine("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+                    Console.WriteLine(" ZipCode: " + contact.Zip);
+                    Console.WriteLine("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+                    Console.WriteLine(" Phone Number: " + contact.PhoneNumber);
+                    Console.WriteLine("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+                    Console.WriteLine(" Email: " + contact.Email);
+                    Console.WriteLine("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+                    Console.WriteLine("\n");
+                    Console.WriteLine("\n");
+                }
+            }
+            if (flag == false) 
+                Console.WriteLine(" Contact is not found!!");
+        }
+        public void showList()
+        {
+            foreach (var contact in ContactLists)
+            {
+                Console.WriteLine("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+                Console.WriteLine(" FirstName: " + contact.FirstName);
+                Console.WriteLine("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+                Console.WriteLine(" LastName: " + contact.LastName);
+                Console.WriteLine("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+                Console.WriteLine(" Address: " + contact.Address);
+                Console.WriteLine("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+                Console.WriteLine(" City: " + contact.City);
+                Console.WriteLine("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+                Console.WriteLine(" State: " + contact.State);
+                Console.WriteLine("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+                Console.WriteLine(" ZipCode: " + contact.Zip);
+                Console.WriteLine("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+                Console.WriteLine(" Phone Number: " + contact.PhoneNumber);
+                Console.WriteLine("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+                Console.WriteLine(" Email: " + contact.Email);
+                Console.WriteLine("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+
+            }
+        }
+        public void editContact(string fName)
+        {
+            bool flag = false;
+            foreach (var contact in ContactLists)
+            {
+                if (contact.FirstName.ToLower() == fName.ToLower())
+                {
+                    flag = true;
+                    Console.WriteLine("Old FirstName: " + contact.FirstName);
                     string newFirstName = Console.ReadLine();
-                    Console.WriteLine("Edit? Old LastName: " + contact.Value.LastName);
+                    Console.WriteLine(" Old LastName: " + contact.LastName);
                     string newLastName = Console.ReadLine();
-                    Console.WriteLine("Edit? Old Address: " + contact.Value.Address);
+                    Console.WriteLine(" Old Address: " + contact.Address);
                     string newAddress = Console.ReadLine();
-                    Console.WriteLine("Edit? Old City: " + contact.Value.City);
+                    Console.WriteLine(" Old City: " + contact.City);
                     string newCity = Console.ReadLine();
-                    Console.WriteLine("Edit? Old State: " + contact.Value.State);
+                    Console.WriteLine(" Old State: " + contact.State);
                     string newState = Console.ReadLine();
-                    Console.WriteLine("Edit? Old ZipCode: " + contact.Value.Zip);
+                    Console.WriteLine(" Old ZipCode: " + contact.Zip);
                     string newZip = Console.ReadLine();
-                    Console.WriteLine("Edit? Old Phone Number: " + contact.Value.PhoneNumber);
+                    Console.WriteLine(" Old Phone Number: " + contact.PhoneNumber);
                     string newPhoneNumber = Console.ReadLine();
-                    Console.WriteLine("Edit? Old Email: " + contact.Value.Email);
+                    Console.WriteLine(" Old Email: " + contact.Email);
                     string newEmail = Console.ReadLine();
                     
 
                     if (newFirstName != "")
                     {
-                        contact.Value.FirstName = newFirstName;
+                        contact.FirstName = newFirstName;
                     }
                     if (newLastName != "")
                     {
-                        contact.Value.LastName = newLastName;
+                        contact.LastName = newLastName;
                     }
                     if (newAddress != "")
                     {
-                        contact.Value.Address = newAddress;
+                        contact.Address = newAddress;
                     }
                     if (newCity != "")
                     {
-                        contact.Value.City = newCity;
-                        FilterCityState(ContactLists);
+                        contact.City = newCity;
+                        filterCityState(ContactLists);
                     }
                     if (newState != "")
                     {
-                        contact.Value.State = newState;
-                        FilterCityState(ContactLists);
+                        contact.State = newState;
+                        filterCityState(ContactLists);
                     }
                     if (newZip != "")
                     {
-                        contact.Value.Zip = newZip;
+                        contact.Zip = newZip;
                     }
                     if (newPhoneNumber != "")
                     {
-                        contact.Value.PhoneNumber = newPhoneNumber;
+                        contact.PhoneNumber = newPhoneNumber;
                     }
                     if (newEmail != "")
                     {
-                        contact.Value.Email = newEmail;
+                        contact.Email = newEmail;
                     }
+                    Write_To_JSON_CSV_TXT();
                 }
             }
+            if (flag == false) Console.WriteLine(" Contact not found!!");
         }
-        public void DeleteContact(string fname)
+        public void deleteContact(string fname)
         {
             foreach (var contact in ContactLists)
             {
-                if (contact.Value.FirstName == fname)
+                if (contact.FirstName.ToLower() == fname.ToLower())
                 {
-                    ContactLists.Remove(contact.Key);
-                    Console.WriteLine("Contact has been deleted!");
-                    FilterCityState(ContactLists);
+                    ContactLists.Remove(contact);
+                    Console.WriteLine("Contact has been deleted!!");
+                    filterCityState(ContactLists);
+                    Write_To_JSON_CSV_TXT();
                     break;
                 }
             }
         }
-        public void AddCityList(ContactList contact)
+        public void addCityList(Contact contact)
         {
             string key = contact.City;
-            ContactList value = contact;
-            if (CityDictionary.ContainsKey(key))
+            Contact value = contact;
+            if (CitiesDict.ContainsKey(key))
             {
-                CityDictionary[key].Add(value);
+                CitiesDict[key].Add(value);
             }
             else
             {
-                List<ContactList> contactList = new List<ContactList>();
-                CityDictionary.Add(key, contactList);
-                CityDictionary[key].Add(value);
+                List<Contact> contactList = new List<Contact>();
+                CitiesDict.Add(key, contactList);
+                CitiesDict[key].Add(value);
             }
         }
-        public void SearchCity(string city)
-        {
-            try
-            {
-                List<ContactList> list = CityDictionary[city];
-                foreach (var contact in list)
-                {
-                    Console.WriteLine(" FirstName: " + contact.FirstName);
-                }
-                Console.WriteLine("Number of contacts in the city: " + list.Count);
-            }
-            catch (Exception)
-            {
-                Console.WriteLine("No Contacts are found within this City in the database.");
-            }
-
-        }
-        public void AddStateList(ContactList contact)
+        public void addStateList(Contact contact)
         {
             string key = contact.State;
-            ContactList value = contact;
-            if (StatesDictionary.ContainsKey(key))
+            Contact value = contact;
+            if (StatesDict.ContainsKey(key))
             {
-                StatesDictionary[key].Add(value);
+                StatesDict[key].Add(value);
             }
             else
             {
-                List<ContactList> contactList = new List<ContactList>();
-                StatesDictionary.Add(key, contactList);
-                StatesDictionary[key].Add(value);
+                List<Contact> contactList = new List<Contact>();
+                StatesDict.Add(key, contactList);
+                StatesDict[key].Add(value);
             }
         }
-        public void SearchState(string state)
+        public void searchCityOrState(string key)
         {
             try
             {
-                List<ContactList> list = StatesDictionary[state];
+                List<Contact> list;
+                if (CitiesDict.ContainsKey(key))
+                {
+                    list = CitiesDict[key];
+                }
+                else
+                {
+                    list = StatesDict[key];
+                }
                 foreach (var contact in list)
                 {
-                    Console.WriteLine("FirstName: " + contact.FirstName);
+                    
+                    Console.WriteLine($" {contact.FirstName} {contact.LastName} [{contact.City}] [{contact.State}]");
                 }
-                Console.WriteLine("Number of contacts in the State: " + list.Count);
+               
+                Console.WriteLine("Total Count: " + list.Count);
+                
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                Console.WriteLine("No Contacts are found within this City in the database.");
+                Console.WriteLine("No Contact with this City or State");
             }
-
         }
-        public void FilterCityState(Dictionary<string, ContactList> ContactLists)
+        public void filterCityState(List<Contact> ContactLists)
         {
-            CityDictionary.Clear();
-            StatesDictionary.Clear();
+            CitiesDict.Clear();
+            StatesDict.Clear();
             foreach (var contact in ContactLists)
             {
-                AddCityList(contact.Value);
-                AddStateList(contact.Value);
+                addCityList(contact);
+                addStateList(contact);
             }
         }
     }
