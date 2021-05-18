@@ -55,21 +55,21 @@ namespace AddressBookManagementSystemModified
             {
                 if (contact.Value.FirstName == fName)
                 {
-                    Console.WriteLine("Edit? Old FirstName: " + contact.Value.FirstName);
+                    Console.WriteLine("Old FirstName: " + contact.Value.FirstName);
                     string newFirstName = Console.ReadLine();
-                    Console.WriteLine("Edit? Old LastName: " + contact.Value.LastName);
+                    Console.WriteLine("Old LastName: " + contact.Value.LastName);
                     string newLastName = Console.ReadLine();
-                    Console.WriteLine("Edit? Old Address: " + contact.Value.Address);
+                    Console.WriteLine("Old Address: " + contact.Value.Address);
                     string newAddress = Console.ReadLine();
-                    Console.WriteLine("Edit? Old City: " + contact.Value.City);
+                    Console.WriteLine("Old City: " + contact.Value.City);
                     string newCity = Console.ReadLine();
-                    Console.WriteLine("Edit? Old State: " + contact.Value.State);
+                    Console.WriteLine("Old State: " + contact.Value.State);
                     string newState = Console.ReadLine();
-                    Console.WriteLine("Edit? Old ZipCode: " + contact.Value.Zip);
+                    Console.WriteLine("Old ZipCode: " + contact.Value.Zip);
                     string newZip = Console.ReadLine();
-                    Console.WriteLine("Edit? Old Phone Number: " + contact.Value.PhoneNumber);
+                    Console.WriteLine("Old Phone Number: " + contact.Value.PhoneNumber);
                     string newPhoneNumber = Console.ReadLine();
-                    Console.WriteLine("Edit? Old Email: " + contact.Value.Email);
+                    Console.WriteLine("Old Email: " + contact.Value.Email);
                     string newEmail = Console.ReadLine();
                     
 
