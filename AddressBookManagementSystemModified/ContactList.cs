@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace AddressBookManagementSystemModified
+namespace Address_Book
 {
-    public class ContactList
+    public class Contact
     {
         private String firstName;
         private String lastName;
@@ -15,7 +15,7 @@ namespace AddressBookManagementSystemModified
         private String phoneNumber;
         private String email;
 
-        public ContactList(string firstName, string lastName, string address, string city, string state, string zip, string phoneNumber, string email)
+        public Contact(string firstName, string lastName, string address, string city, string state, string zip, string phoneNumber, string email)
         {
             this.FirstName = firstName;
             this.LastName = lastName;
