@@ -1,0 +1,13 @@
+C:\Users\SANTANU\source\repos\AddressBookManagementSystem\AddressBookManagementSystem\obj\Debug\netcoreapp3.1\AddressBookManagementSystem.csprojAssemblyReference.cache
+C:\Users\SANTANU\source\repos\AddressBookManagementSystem\AddressBookManagementSystem\obj\Debug\netcoreapp3.1\AddressBookManagementSystem.AssemblyInfoInputs.cache
+C:\Users\SANTANU\source\repos\AddressBookManagementSystem\AddressBookManagementSystem\obj\Debug\netcoreapp3.1\AddressBookManagementSystem.AssemblyInfo.cs
+C:\Users\SANTANU\source\repos\AddressBookManagementSystem\AddressBookManagementSystem\obj\Debug\netcoreapp3.1\AddressBookManagementSystem.csproj.CoreCompileInputs.cache
+C:\Users\SANTANU\source\repos\AddressBookManagementSystem\AddressBookManagementSystem\bin\Debug\netcoreapp3.1\AddressBookManagementSystem.exe
+C:\Users\SANTANU\source\repos\AddressBookManagementSystem\AddressBookManagementSystem\bin\Debug\netcoreapp3.1\AddressBookManagementSystem.deps.json
+C:\Users\SANTANU\source\repos\AddressBookManagementSystem\AddressBookManagementSystem\bin\Debug\netcoreapp3.1\AddressBookManagementSystem.runtimeconfig.json
+C:\Users\SANTANU\source\repos\AddressBookManagementSystem\AddressBookManagementSystem\bin\Debug\netcoreapp3.1\AddressBookManagementSystem.runtimeconfig.dev.json
+C:\Users\SANTANU\source\repos\AddressBookManagementSystem\AddressBookManagementSystem\bin\Debug\netcoreapp3.1\AddressBookManagementSystem.dll
+C:\Users\SANTANU\source\repos\AddressBookManagementSystem\AddressBookManagementSystem\bin\Debug\netcoreapp3.1\AddressBookManagementSystem.pdb
+C:\Users\SANTANU\source\repos\AddressBookManagementSystem\AddressBookManagementSystem\obj\Debug\netcoreapp3.1\AddressBookManagementSystem.dll
+C:\Users\SANTANU\source\repos\AddressBookManagementSystem\AddressBookManagementSystem\obj\Debug\netcoreapp3.1\AddressBookManagementSystem.pdb
+C:\Users\SANTANU\source\repos\AddressBookManagementSystem\AddressBookManagementSystem\obj\Debug\netcoreapp3.1\AddressBookManagementSystem.genruntimeconfig.cache
