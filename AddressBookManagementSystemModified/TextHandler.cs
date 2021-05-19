@@ -21,7 +21,7 @@ namespace Address_Book
             }
         }
 
-        public static List<ContactList> ReadFile(List<ContactList> contactList)
+        public static void ReadFile()
         {
             using (StreamReader sr = File.OpenText(path))
             {
@@ -31,7 +31,7 @@ namespace Address_Book
                     Console.WriteLine(s);
                 }
             }
-            return contactList;
+            
         }
     }
 }

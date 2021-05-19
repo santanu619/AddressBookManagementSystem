@@ -15,6 +15,7 @@ namespace Address_Book
         {
           
             ContactLists = JSONHandler.GetDataFromJson();
+            TextHandler.ReadFile();
            
             filterCityState(ContactLists);
             
