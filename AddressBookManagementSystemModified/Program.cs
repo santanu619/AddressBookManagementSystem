@@ -105,7 +105,7 @@ namespace Address_Book
                 {
                     Console.WriteLine("Invalid Choice!");
                 }
-                Console.WriteLine("Press key(---____---");
+                Console.WriteLine("Press key(---____---)");
                 Console.ReadKey();
                 Console.Clear();
             }
