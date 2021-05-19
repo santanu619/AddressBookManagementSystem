@@ -47,8 +47,6 @@ namespace Address_Book
                                 Console.WriteLine("Add Contact Details:");
                                 Console.WriteLine("First Name:");
                                 string firstName = Console.ReadLine();
-                                bool isDuplicate = contactOperation.checkDuplicate(firstName);
-                                if (isDuplicate) break;
                                 Console.WriteLine("Last Name:");
                                 string lastName = Console.ReadLine();
                                 Console.WriteLine("Address:");
@@ -73,7 +71,7 @@ namespace Address_Book
                             case 3:
                                 Console.WriteLine("Enter First Name you want to Edit?");
                                 string fName = Console.ReadLine();
-                                contactOperation.editContact(fName);
+                                contactOperation.editContact();
                                 break;
 
                             case 4:

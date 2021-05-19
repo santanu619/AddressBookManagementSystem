@@ -26,21 +26,7 @@ namespace Address_Book
             TextHandler.WriteToTxt(ContactLists);
             JSONHandler.WriteToJson(ContactLists);
         }
-        public bool checkDuplicate(string firstName)
-        {
-            bool flag = false;
-            foreach (ContactList contact in ContactLists)
-            {
-                if (contact.FirstName.ToLower() == firstName.ToLower())
-                {
-                    flag = true;
-                    Console.WriteLine("Contact already exist.Please Enter a Different Name");
-                    break;
-                }
-            }
-            if (flag) return true;
-            else return false;
-        }
+        
         public void addContact(string firstName, string lastName, string address, string city, string state, string zip, string phoneNumber, string email)
         {
             ContactList newContact = new ContactList(firstName, lastName, address, city, state, zip, phoneNumber, email);
@@ -105,70 +91,18 @@ namespace Address_Book
 
             }
         }
-        public void editContact(string fName)
+        public void editContact()
         {
-            bool flag = false;
+            Console.WriteLine("Please Enter Name Which You Want To Edit");
+            string Name = Console.ReadLine();
             foreach (var contact in ContactLists)
-            {
-                if (contact.FirstName.ToLower() == fName.ToLower())
+                if (Name.Equals(contact.FirstName))
                 {
-                    flag = true;
-                    Console.WriteLine("Old FirstName: " + contact.FirstName);
-                    string newFirstName = Console.ReadLine();
-                    Console.WriteLine(" Old LastName: " + contact.LastName);
-                    string newLastName = Console.ReadLine();
-                    Console.WriteLine(" Old Address: " + contact.Address);
-                    string newAddress = Console.ReadLine();
-                    Console.WriteLine(" Old City: " + contact.City);
-                    string newCity = Console.ReadLine();
-                    Console.WriteLine(" Old State: " + contact.State);
-                    string newState = Console.ReadLine();
-                    Console.WriteLine(" Old ZipCode: " + contact.Zip);
-                    string newZip = Console.ReadLine();
-                    Console.WriteLine(" Old Phone Number: " + contact.PhoneNumber);
-                    string newPhoneNumber = Console.ReadLine();
-                    Console.WriteLine(" Old Email: " + contact.Email);
-                    string newEmail = Console.ReadLine();
-
-
-                    if (newFirstName != "")
-                    {
-                        contact.FirstName = newFirstName;
-                    }
-                    if (newLastName != "")
-                    {
-                        contact.LastName = newLastName;
-                    }
-                    if (newAddress != "")
-                    {
-                        contact.Address = newAddress;
-                    }
-                    if (newCity != "")
-                    {
-                        contact.City = newCity;
-                        filterCityState(ContactLists);
-                    }
-                    if (newState != "")
-                    {
-                        contact.State = newState;
-                        filterCityState(ContactLists);
-                    }
-                    if (newZip != "")
-                    {
-                        contact.Zip = newZip;
-                    }
-                    if (newPhoneNumber != "")
-                    {
-                        contact.PhoneNumber = newPhoneNumber;
-                    }
-                    if (newEmail != "")
-                    {
-                        contact.Email = newEmail;
-                    }
-                    Write();
+                    Console.WriteLine("Enter new FirstName");
+                    string NewFirstName = Console.ReadLine();
+                    contact.FirstName = NewFirstName;
                 }
-            }
-            if (flag == false) Console.WriteLine(" Contact not found!!");
+            Console.WriteLine("Contact is Edited");
         }
         public void deleteContact(string fname)
         {
