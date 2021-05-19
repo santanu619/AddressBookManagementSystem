@@ -8,25 +8,18 @@ namespace Address_Book
 {
     public class ContactOperation
     {
-        private List<Contact> ContactLists = new List<Contact>();
-        private Dictionary<string, List<Contact>> CitiesDict = new Dictionary<string, List<Contact>>();
-        private Dictionary<string, List<Contact>> StatesDict = new Dictionary<string, List<Contact>>();
+        private List<ContactList> ContactLists = new List<ContactList>();
+        private Dictionary<string, List<ContactList>> CitiesDict = new Dictionary<string, List<ContactList>>();
+        private Dictionary<string, List<ContactList>> StatesDict = new Dictionary<string, List<ContactList>>();
         public void generateData()
         {
-
+          
             ContactLists = JSONHandler.GetDataFromJson();
+           
             filterCityState(ContactLists);
+            
         }
-        public void ShowInBrief()
-        {
-            List<Contact> sortedList = ContactLists.OrderBy(o => o.FirstName).ToList();
-            int i = 1;
-            foreach (Contact contact in sortedList)
-            {
-                Console.WriteLine($" {i}.{contact.FirstName} {contact.LastName} [{contact.Email}]");
-                i++;
-            }
-        }
+        
         public void Write()
         {
             CSVHandler.WriteToCSVFile(ContactLists);
@@ -36,7 +29,7 @@ namespace Address_Book
         public bool checkDuplicate(string firstName)
         {
             bool flag = false;
-            foreach (Contact contact in ContactLists)
+            foreach (ContactList contact in ContactLists)
             {
                 if (contact.FirstName.ToLower() == firstName.ToLower())
                 {
@@ -50,7 +43,7 @@ namespace Address_Book
         }
         public void addContact(string firstName, string lastName, string address, string city, string state, string zip, string phoneNumber, string email)
         {
-            Contact newContact = new Contact(firstName, lastName, address, city, state, zip, phoneNumber, email);
+            ContactList newContact = new ContactList(firstName, lastName, address, city, state, zip, phoneNumber, email);
             this.ContactLists.Add(newContact);
             filterCityState(ContactLists);
             Write();
@@ -191,32 +184,32 @@ namespace Address_Book
                 }
             }
         }
-        public void addCityList(Contact contact)
+        public void addCityList(ContactList contact)
         {
             string key = contact.City;
-            Contact value = contact;
+            ContactList value = contact;
             if (CitiesDict.ContainsKey(key))
             {
                 CitiesDict[key].Add(value);
             }
             else
             {
-                List<Contact> contactList = new List<Contact>();
+                List<ContactList> contactList = new List<ContactList>();
                 CitiesDict.Add(key, contactList);
                 CitiesDict[key].Add(value);
             }
         }
-        public void addStateList(Contact contact)
+        public void addStateList(ContactList contact)
         {
             string key = contact.State;
-            Contact value = contact;
+            ContactList value = contact;
             if (StatesDict.ContainsKey(key))
             {
                 StatesDict[key].Add(value);
             }
             else
             {
-                List<Contact> contactList = new List<Contact>();
+                List<ContactList> contactList = new List<ContactList>();
                 StatesDict.Add(key, contactList);
                 StatesDict[key].Add(value);
             }
@@ -225,7 +218,7 @@ namespace Address_Book
         {
             try
             {
-                List<Contact> list;
+                List<ContactList> list;
                 if (CitiesDict.ContainsKey(key))
                 {
                     list = CitiesDict[key];
@@ -248,7 +241,7 @@ namespace Address_Book
                 Console.WriteLine("No Contact with this City or State");
             }
         }
-        public void filterCityState(List<Contact> ContactLists)
+        public void filterCityState(List<ContactList> ContactLists)
         {
             CitiesDict.Clear();
             StatesDict.Clear();

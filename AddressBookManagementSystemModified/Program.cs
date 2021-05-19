@@ -14,7 +14,6 @@ namespace Address_Book
                 Console.WriteLine("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
                 Console.WriteLine("xxxxxxxxWelcome To Address Bookxxxxxxxxx");
                 Console.WriteLine("xxxxxxxxx                     xxxxxxxxxx");
-                contactOperation.ShowInBrief();
                 Console.WriteLine("\n");
                 Console.WriteLine("  Select Choice:");
                 Console.WriteLine("*****************");
@@ -45,7 +44,6 @@ namespace Address_Book
                         switch (input)
                         {
                             case 1:
-                                Console.Clear();
                                 Console.WriteLine("Add Contact Details:");
                                 Console.WriteLine("First Name:");
                                 string firstName = Console.ReadLine();
@@ -69,7 +67,6 @@ namespace Address_Book
                                 break;
 
                             case 2:
-                                Console.Clear();
                                 contactOperation.showList();
                                 break;
 

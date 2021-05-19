@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Address_Book
 {
-    public class Contact
+    public class ContactList
     {
         private String firstName;
         private String lastName;
@@ -15,7 +15,7 @@ namespace Address_Book
         private String phoneNumber;
         private String email;
 
-        public Contact(string firstName, string lastName, string address, string city, string state, string zip, string phoneNumber, string email)
+        public ContactList(string firstName, string lastName, string address, string city, string state, string zip, string phoneNumber, string email)
         {
             this.FirstName = firstName;
             this.LastName = lastName;

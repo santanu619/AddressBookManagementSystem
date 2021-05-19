@@ -5295,7 +5295,8 @@
     ".NETCoreApp,Version=v3.1": [
       "CsvHelper >= 27.0.3",
       "Microsoft.Azure.KeyVault >= 3.0.5",
-      "Npgsql >= 5.0.5"
+      "Npgsql >= 5.0.5",
+      "System.Collections >= 4.3.0"
     ]
   },
   "packageFolders": {
@@ -5348,6 +5349,10 @@
           "Npgsql": {
             "target": "Package",
             "version": "[5.0.5, )"
+          },
+          "System.Collections": {
+            "target": "Package",
+            "version": "[4.3.0, )"
           }
         },
         "imports": [
