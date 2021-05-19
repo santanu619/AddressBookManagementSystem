@@ -31,17 +31,15 @@ namespace Address_Book
                 Console.WriteLine("*****************");
                 Console.WriteLine(" 7. Exit ");
                 Console.WriteLine("*****************");
-              
+
 
                 try
                 {
-                    string data = Console.ReadLine();
-                    int input = 0;
-                    bool result = int.TryParse(data, out input);
-                    if (result)
-                    {
-                        Console.WriteLine(input);
-                        switch (input)
+
+                    int ch = Convert.ToInt32(Console.ReadLine());
+                    
+                       
+                        switch (ch)
                         {
                             case 1:
                                 Console.WriteLine("Add Contact Details:");
@@ -96,21 +94,18 @@ namespace Address_Book
                                 System.Environment.Exit(1);
                                 break;
                             default:
-                                Console.WriteLine($"{input} is Invalid Choice!");
+                                Console.WriteLine($"{ch} is Invalid Choice!");
                                 break;
                         }
 
-                    }
-                    else
-                    {
-                        contactOperation.ShowOneContact(data);
-                    }
+                    
+                    
                 }
-                catch (Exception )
+                catch (Exception)
                 {
                     Console.WriteLine("Invalid Choice!");
                 }
-                Console.WriteLine("Press any key to continue...");
+                Console.WriteLine("Press key(---____---");
                 Console.ReadKey();
                 Console.Clear();
             }

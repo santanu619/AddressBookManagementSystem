@@ -36,38 +36,7 @@ namespace Address_Book
             Write();
 
         }
-        public void ShowOneContact(string fName)
-        {
-            bool flag = false;
-            foreach (var contact in ContactLists)
-            {
-                if (contact.FirstName.ToLower() == fName.ToLower())
-                {
-                    flag = true;
-                    Console.WriteLine("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
-                    Console.WriteLine(" FirstName: " + contact.FirstName);
-                    Console.WriteLine("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
-                    Console.WriteLine(" LastName: " + contact.LastName);
-                    Console.WriteLine("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
-                    Console.WriteLine(" Address: " + contact.Address);
-                    Console.WriteLine("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
-                    Console.WriteLine(" City: " + contact.City);
-                    Console.WriteLine("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
-                    Console.WriteLine(" State: " + contact.State);
-                    Console.WriteLine("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
-                    Console.WriteLine(" ZipCode: " + contact.Zip);
-                    Console.WriteLine("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
-                    Console.WriteLine(" Phone Number: " + contact.PhoneNumber);
-                    Console.WriteLine("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
-                    Console.WriteLine(" Email: " + contact.Email);
-                    Console.WriteLine("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
-                    Console.WriteLine("\n");
-                    Console.WriteLine("\n");
-                }
-            }
-            if (flag == false)
-                Console.WriteLine(" Contact is not found!!");
-        }
+        
         public void showList()
         {
             foreach (var contact in ContactLists)
