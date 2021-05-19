@@ -17,7 +17,8 @@ namespace Address_Book
                 Console.WriteLine("\n");
                 Console.WriteLine("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
                 Console.WriteLine("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
-               
+
+                Console.WriteLine("\n");
                 Console.WriteLine("\n");
                 Console.WriteLine("  Select Choice:");
                 Console.WriteLine("*****************");
