@@ -10,10 +10,14 @@ namespace Address_Book
             contactOperation.generateData();
             while (true)
             {
-                Console.WriteLine("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
-                Console.WriteLine("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
-                Console.WriteLine("xxxxxxxxWelcome To Address Bookxxxxxxxxx");
-                Console.WriteLine("xxxxxxxxx                     xxxxxxxxxx");
+                Console.WriteLine("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+                Console.WriteLine("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+                Console.WriteLine("\n");
+                Console.WriteLine("\t\t\t\tWELCOME TO ADDRESSBOOK MANAGEMENT SYSTEM\t\t\t\t");
+                Console.WriteLine("\n");
+                Console.WriteLine("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+                Console.WriteLine("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+               
                 Console.WriteLine("\n");
                 Console.WriteLine("  Select Choice:");
                 Console.WriteLine("*****************");
@@ -103,7 +107,7 @@ namespace Address_Book
                 }
                 catch (Exception)
                 {
-                    Console.WriteLine("Invalid Choice!");
+                   // Console.WriteLine("Invalid Choice!");
                 }
                 Console.WriteLine("Press key(---____---)");
                 Console.ReadKey();
