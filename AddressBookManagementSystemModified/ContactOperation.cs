@@ -142,7 +142,7 @@ namespace Address_Book
             }
             catch (Exception)
             {
-                Console.WriteLine("No Contact with this City or State");
+                Console.WriteLine("No Contact found within this City or State");
             }
         }
         public void filterCityState(List<ContactList> ContactLists)
